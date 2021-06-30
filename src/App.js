@@ -1,8 +1,9 @@
+import Departements from "./Components/Departements/Departements";
 
 function App() {
   return (
     <div className="App">
-      Getting With Project
+      <Departements />
     </div>
   );
 }
