@@ -1,6 +1,4 @@
 class Department {
-
-
     constructor(meetingTime, days, teachers, classRooms, roomCapacity, courses, creditHour, CourseTeachermapping, numberOfStudent) {
         this.meetingTime = meetingTime;
         this.days = days;
@@ -44,46 +42,77 @@ var dep = [];
 
 var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 var meetingTime = ["2:00 - 3:00", "3:00 - 4:00", "4:00 - 5:00", "5:00 - 6:00", "7:00-8:00", "8:00-9:00", "9:00-10:00"];
-var teachers = ["teacher 1", "teacher 2", "teacher 3"];
+var teachers = ["teacher 1", "teacher 2", "teacher 3", "teacher 4", "teacher 5"];
 var classRooms = ["b1", "b2", "b3", "b4", "b5", "b6"];
 var roomCapacity = [100, 80, 50, 150, 40, 140];
-var csCourses = ["Algebra", "Calculus", "Programming"];
-var creditHour = [3, 3, 4];
-var CourseTeachermapping = [teachers[0], teachers[1], teachers[2]];
+var csCourses = [];
+//var csCourses = ["Algebra", "Calculus", "Programming", "Database", "Discrete Math", "Data Structure", "Algorithms", "Electronics", "Comp Arc"];
+var creditHour = [4, 4, 4];
+var CourseTeachermapping = [teachers[0], teachers[0], teachers[1], teachers[2], teachers[3], teachers[4], teachers[1], teachers[2], teachers[3]];
 var numberOfStudent = 100;
 
+
+var days1 = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+var meetingTime1 = ["2:00 - 3:00", "3:00 - 4:00", "4:00 - 4:30", "5:00 - 6:00", "7:00-8:00", "8:00-9:00", "9:00-10:00"];
+var teachers1 = ["teacher 1", "teacher 2", "teacher 3", "teacher 4", "teacher 5"];
+var classRooms1 = ["b1", "b2", "b3", "b4", "b5", "b6"];
+var roomCapacity1 = [100, 80, 50, 150, 40, 140];
+var csCourses1 = ["Algebra", "Calculus", "Programming", "Database", "Discrete Math", "Data Structure", "Algorithms", "Electronics", "Comp Arc"];
+var creditHour1 = [4, 4, 4, 3, 3, 5, 4, 4, 4];
+var CourseTeachermapping1 = [teachers[0], teachers[0], teachers[1], teachers[2], teachers[3], teachers[4], teachers[1], teachers[2], teachers[3]];
+var numberOfStudent1 = 100;
+
+var days2 = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+var meetingTime2 = ["2:00 - 3:00", "3:00 - 4:00", "4:00 - 5:00", "5:00 - 6:00", "7:00-8:00", "8:00-9:00", "9:00-10:00"];
+var teachers2 = ["teacher 1", "teacher 2", "teacher 3", "teacher 4", "teacher 5"];
+var classRooms2 = ["b1", "b2", "b3", "b4", "b5", "b6"];
+var roomCapacity2 = [100, 80, 50, 150, 40, 140];
+var csCourses2 = ["Algebra", "Calculus", "Programming", "Database", "Discrete Math", "Data Structure", "Algorithms", "Electronics", "Comp Arc"];
+var creditHour2 = [3, 3, 4, 6, 3, 5, 3, 4, 4];
+var CourseTeachermapping2 = [teachers[0], teachers[0], teachers[1], teachers[2], teachers[3], teachers[4], teachers[1], teachers[2], teachers[3]];
+var numberOfStudent2 = 100;
 dep[0] = new Department(meetingTime, days, teachers, classRooms, roomCapacity, csCourses, creditHour, CourseTeachermapping, numberOfStudent);
+// dep[1] = new Department(meetingTime1, days1, teachers1, classRooms1, roomCapacity1, csCourses1, creditHour1, CourseTeachermapping1, numberOfStudent1);
+// dep[2] = new Department(meetingTime2, days2, teachers2, classRooms2, roomCapacity2, csCourses2, creditHour2, CourseTeachermapping2, numberOfStudent2);
 
-console.log(dep[0])
-
-// schedule(dep, 0);   
-// console.log(dep)
+// schedule(dep, 0);
 // schedule(dep, 1);
 // schedule(dep, 2);
 
+export const inputFields = (item) => {
+    console.log(item);
+    var CourseName = inputsCourseName(item);
+    // console.log(CourseName);
+}
+export const inputsCourseName = (inputs) => {
+    var result = [];
+    //console.log(inputs);
+    for (let i = 0; i < inputs.course.length; i++) {
+        console.log(inputs.course[i].courseName);
+        csCourses.push(inputs.course[i].courseName);
 
-
-function createTable(item, tableid) {
-    /*  var table = document.getElementById(tableid);
-     for (let i = 0; i < item.length; i++) {
-         var tr = document.createElement("tr");
-         table.appendChild(tr);
-         for (let j = 0; j < item[i].length; j++) {
-             var th = document.createElement("th");
-             var time = document.createTextNode(item[i][j]);
-             th.appendChild(time);
-             tr.appendChild(th);
-         }
-     }
-  */
+        // var single = inputs.courseName[te];
+        // console.log(single + "ghf")
+        // if (single != "") {
+        //     result.push(single)
+        // }
+    }
+    dep[0] = new Department(meetingTime, days, teachers, classRooms, roomCapacity, csCourses, creditHour, CourseTeachermapping, numberOfStudent);
+    schedule(dep, 0);
+    console.log(dep[0].schedule)
+    return result;
+}
+export const initalzation = () => {
+    console.log(dep[0].schedule)
+    return dep[0].schedule
 }
 
-
 function schedule(dep, num) {
+
     if (!isPossible(dep[num])) {
-        console.log("not possible");
         return;
     }
+
     var x = 0;
     for (var i = 0; i < dep[num].schedule.length; i++) {
         for (var j = 0; j < dep[num].schedule[i].length; j++) {
@@ -91,10 +120,8 @@ function schedule(dep, num) {
                 var count = 0;
                 while (true) {
                     x = Math.floor(Math.random() * dep[num].courses.length);
-                    console.log(x);
                     var conflict = false;
-                    if (count > 10000) {
-                        console.log("10000")
+                    if (count > 1000) {
                         break;
                     }
                     if (dep[num].creditHour[x] == 0) {
@@ -112,6 +139,33 @@ function schedule(dep, num) {
                     if (!conflict) {
                         dep[num].schedule[i][j] = dep[num].courses[x];
                         dep[num].creditHour[x]--;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+function assignRoom(dep, num) {
+
+    var x = 0;
+    for (var i = 0; i < dep[num].assignedRooms.length; i++) {
+        for (var j = 0; j < dep[num].assignedRooms[i].length; j++) {
+            if (dep[num].assignedRooms[i][j] == "") {
+                while (true) {
+                    x = Math.floor(Math.random() * dep[num].classRooms.length);
+                    var conflict = false;
+                    for (var a = 0; a < dep.length; a++) {
+                        if (dep[a].assignedRooms[i][j] != null)
+                            if (a != num && dep[a].assignedRooms[i][j] == dep[num].classRooms[x]) {
+                                conflict = true;
+                                break;
+                            }
+                    }
+                    if (!conflict && dep[num].classRooms[x] >= dep[num].numberOfStudent) {
+                        dep[num].assignedRooms[i][j] = dep[num].classRooms[x];
                         break;
                     }
                 }
@@ -141,92 +195,3 @@ function isPossible(dep) {
     }
     return true;
 }
-export const initalzation = (inputs) => {
-    // days = day;
-    console.log(inputs.course)
-    var y = inputsCourseName(inputs.course);
-    // csCourses = y;
-    console.log(dep)
-    var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-    var meetingTime = ["2:00 - 3:00", "3:00 - 4:00", "4:00 - 5:00", "5:00 - 6:00", "7:00-8:00", "8:00-9:00", "9:00-10:00"];
-    var teachers = ["teacher 1", "teacher 2", "teacher 3"];
-    var classRooms = ["b1", "b2", "b3", "b4", "b5", "b6"];
-    var roomCapacity = [100, 80, 50, 150, 40, 140];
-    var csCourses = ["Algebra", "Calculus", "Programming"];
-    var creditHour = [3, 3, 4];
-    var CourseTeachermapping = [teachers[0], teachers[1], teachers[2]];
-    var numberOfStudent = 100;
-    schedule(dep, 0);
-    var item = dep;
-
-
-    for (let i = 0; i < item.length; i++) {
-        // var tr = document.createElement("tr");
-        // table.appendChild(tr);
-        for (let j = 0; j < item[i].length; j++) {
-            // var th = document.createElement("th");
-            // console.log(item[i][j])
-            // var time = document.createTextNode(item[i][j]);
-            // th.appendChild(time);
-            // tr.appendChild(th);
-        }
-        // console.table(item[0].schedule)
-        return item[0].schedule
-    }
-    // console.log(day);
-}
-export const toMap = (inputs) => {
-    var result = []
-    if (isNaN(inputs)) {
-        for (var i = 0; i < inputs[0].length; i++) {
-            result[i] = new Array(inputs[0].length).fill();
-            for (var j = 0; j < inputs.length; j++) {
-                result[i][j] = inputs[j][i]; // Here is the fixed column access using the outter index i.
-            }
-        }
-    }
-    return result;
-}
-export const inputsCourseName = (inputs) => {
-    var result = [];
-
-    for (let i = 0; i < inputs.length; i++) {
-        var single = inputs[i].courseName;
-        if (single != "") {
-            result.push(single)
-        }
-
-    }
-    return result;
-}
-export const inputsCourseCreditHour = (inputs) => {
-    var result = [];
-
-    for (let i = 0; i < inputs.length; i++) {
-        var single = inputs[i].creditHour;
-        if (single != "") {
-            result.push(single)
-        }
-
-    }
-    return result;
-}
-
-
-/* export const createTable = (item) => {
-    // var table = document.getElementById(tableid);
-    // for (let i = 0; i < item.length; i++) {
-    //     var tr = document.createElement("tr");
-    //     table.appendChild(tr);
-    //     for (let j = 0; j < item[i].length; j++) {
-    //         var th = document.createElement("th");
-    //         var time = document.createTextNode(item[i][j]);
-    //         th.appendChild(time);
-    //         tr.appendChild(th);
-    //     }
-    // }
-    // alert("asd")
-    // console.log("asd")
-    return days;
-}
- */
