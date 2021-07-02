@@ -27,13 +27,13 @@ const Result = ({ schedules }) => {
         console.log(schedules);
         var result = [];
         if (isNaN(schedules)) {
-            for (var i = 0; i < schedules[0].length; i++) {
-                result[i] = new Array(schedules[0].length).fill();
-                for (var j = 0; j < schedules.length; j++) {
-                    result[i][j] = schedules[j][i]; // Here is the fixed column access using the outter index i.
-                }
-            }
-            setNewResult(result);
+            // for (var i = 0; i < schedules[0].length; i++) {
+            //     result[i] = new Array(schedules[0].length).fill();
+            //     for (var j = 0; j < schedules.length; j++) {
+            //         result[i][j] = schedules[j][i]; // Here is the fixed column access using the outter index i.
+            //     }
+            // }
+            setNewResult(schedules);
         }
 
         console.log(result)

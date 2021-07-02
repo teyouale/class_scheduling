@@ -47,30 +47,11 @@ var classRooms = ["b1", "b2", "b3", "b4", "b5", "b6"];
 var roomCapacity = [100, 80, 50, 150, 40, 140];
 var csCourses = [];
 //var csCourses = ["Algebra", "Calculus", "Programming", "Database", "Discrete Math", "Data Structure", "Algorithms", "Electronics", "Comp Arc"];
-var creditHour = [4, 4, 4];
+var creditHour = [];
 var CourseTeachermapping = [teachers[0], teachers[0], teachers[1], teachers[2], teachers[3], teachers[4], teachers[1], teachers[2], teachers[3]];
 var numberOfStudent = 100;
 
 
-var days1 = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-var meetingTime1 = ["2:00 - 3:00", "3:00 - 4:00", "4:00 - 4:30", "5:00 - 6:00", "7:00-8:00", "8:00-9:00", "9:00-10:00"];
-var teachers1 = ["teacher 1", "teacher 2", "teacher 3", "teacher 4", "teacher 5"];
-var classRooms1 = ["b1", "b2", "b3", "b4", "b5", "b6"];
-var roomCapacity1 = [100, 80, 50, 150, 40, 140];
-var csCourses1 = ["Algebra", "Calculus", "Programming", "Database", "Discrete Math", "Data Structure", "Algorithms", "Electronics", "Comp Arc"];
-var creditHour1 = [4, 4, 4, 3, 3, 5, 4, 4, 4];
-var CourseTeachermapping1 = [teachers[0], teachers[0], teachers[1], teachers[2], teachers[3], teachers[4], teachers[1], teachers[2], teachers[3]];
-var numberOfStudent1 = 100;
-
-var days2 = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-var meetingTime2 = ["2:00 - 3:00", "3:00 - 4:00", "4:00 - 5:00", "5:00 - 6:00", "7:00-8:00", "8:00-9:00", "9:00-10:00"];
-var teachers2 = ["teacher 1", "teacher 2", "teacher 3", "teacher 4", "teacher 5"];
-var classRooms2 = ["b1", "b2", "b3", "b4", "b5", "b6"];
-var roomCapacity2 = [100, 80, 50, 150, 40, 140];
-var csCourses2 = ["Algebra", "Calculus", "Programming", "Database", "Discrete Math", "Data Structure", "Algorithms", "Electronics", "Comp Arc"];
-var creditHour2 = [3, 3, 4, 6, 3, 5, 3, 4, 4];
-var CourseTeachermapping2 = [teachers[0], teachers[0], teachers[1], teachers[2], teachers[3], teachers[4], teachers[1], teachers[2], teachers[3]];
-var numberOfStudent2 = 100;
 dep[0] = new Department(meetingTime, days, teachers, classRooms, roomCapacity, csCourses, creditHour, CourseTeachermapping, numberOfStudent);
 // dep[1] = new Department(meetingTime1, days1, teachers1, classRooms1, roomCapacity1, csCourses1, creditHour1, CourseTeachermapping1, numberOfStudent1);
 // dep[2] = new Department(meetingTime2, days2, teachers2, classRooms2, roomCapacity2, csCourses2, creditHour2, CourseTeachermapping2, numberOfStudent2);
@@ -82,24 +63,40 @@ dep[0] = new Department(meetingTime, days, teachers, classRooms, roomCapacity, c
 export const inputFields = (item) => {
     console.log(item);
     var CourseName = inputsCourseName(item);
-    // console.log(CourseName);
+    var CourseHour = inputsCourseCreditHour(item);
+    console.log(CourseName);
+    console.log(CourseHour);
+    dep[0] = new Department(meetingTime, days, teachers, classRooms, roomCapacity, csCourses, creditHour, CourseTeachermapping, numberOfStudent);
+    console.log(dep[0].schedule)
+    return schedule(dep, 0);
 }
+export const inputsCourseCreditHour = (inputs) => {
+    var result = [];
+
+    for (let i = 0; i < inputs.course.length; i++) {
+        var single = inputs.course[i].creditHour;
+        if (single != "") {
+            result.push(single)
+            creditHour.push(inputs.course[i].creditHour)
+        }
+
+    }
+    // console.log(result)
+    return result;
+}
+
 export const inputsCourseName = (inputs) => {
     var result = [];
     //console.log(inputs);
     for (let i = 0; i < inputs.course.length; i++) {
-        console.log(inputs.course[i].courseName);
-        csCourses.push(inputs.course[i].courseName);
-
-        // var single = inputs.courseName[te];
+        var single = inputs.course[i].courseName;
         // console.log(single + "ghf")
-        // if (single != "") {
-        //     result.push(single)
-        // }
+        if (single != "") {
+            console.log(inputs.course[i].courseName);
+            csCourses.push(inputs.course[i].courseName);
+            result.push(single)
+        }
     }
-    dep[0] = new Department(meetingTime, days, teachers, classRooms, roomCapacity, csCourses, creditHour, CourseTeachermapping, numberOfStudent);
-    schedule(dep, 0);
-    console.log(dep[0].schedule)
     return result;
 }
 export const initalzation = () => {

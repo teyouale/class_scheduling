@@ -8,8 +8,8 @@ import Result from './Components/Result/Result';
 const App = () => {
   const [schedules, setschedules] = useState([])
   const handleMessage = (item) => {
-    var a = initalzation(item);
     inputFields(item);
+    var a = initalzation(item);
     // console.log(a);
     setschedules(a);
   }

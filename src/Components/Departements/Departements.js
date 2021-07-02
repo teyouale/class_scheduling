@@ -34,6 +34,7 @@ const Departements = ({ handleMessage }) => {
                             <TableRow>
                                 <TableCell colSpan={5}>
                                     <Departement handleMessage={handleMessage} />
+                                    <Departement handleMessage={handleMessage} />
                                 </TableCell>
                             </TableRow>
                             {/* <TableRow>
