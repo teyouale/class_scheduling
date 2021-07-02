@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import { CssBaseline, Button, Typography, Container, Table, TableHead, TableBody, TableRow, TableCell, Paper, TableContainer } from '@material-ui/core';
 import useStyles from './styles';
 import Departement from './Departement/Departement';
-const Departements = () => {
+const Departements = ({ handleMessage }) => {
     const classes = useStyles();
     return (
         <React.Fragment>
@@ -11,6 +12,11 @@ const Departements = () => {
                 <Typography component="div" />
                 <Button variant="contained" color="primary">
                     Add
+                </Button>
+                <Button variant="contained" color="primary" link='/result'>
+                    <Link to='/result'>
+                        Generate
+                    </Link>
                 </Button>
                 <TableContainer component={Paper}>
                     <Table className={classes.table} aria-label="simple table">
@@ -27,7 +33,7 @@ const Departements = () => {
 
                             <TableRow>
                                 <TableCell colSpan={5}>
-                                    <Departement />
+                                    <Departement handleMessage={handleMessage} />
                                 </TableCell>
                             </TableRow>
                             {/* <TableRow>
