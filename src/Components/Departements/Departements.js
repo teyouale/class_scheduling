@@ -13,7 +13,7 @@ const Departements = ({ handleMessage }) => {
                 <Button variant="contained" color="primary">
                     Add
                 </Button>
-                <Button variant="contained" color="primary" link='/result'>
+                <Button variant="contained" color="" link='/result'>
                     <Link to='/result'>
                         Generate
                     </Link>
@@ -34,7 +34,7 @@ const Departements = ({ handleMessage }) => {
                             <TableRow>
                                 <TableCell colSpan={5}>
                                     <Departement handleMessage={handleMessage} />
-                                    <Departement handleMessage={handleMessage} />
+                                    {/* <Departement handleMessage={handleMessage} /> */}
                                 </TableCell>
                             </TableRow>
                             {/* <TableRow>

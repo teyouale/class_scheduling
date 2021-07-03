@@ -8,9 +8,9 @@ import Result from './Components/Result/Result';
 const App = () => {
   const [schedules, setschedules] = useState([])
   const handleMessage = (item) => {
-    inputFields(item);
-    var a = initalzation(item);
-    // console.log(a);
+    var a = inputFields(item);
+    // var a = initalzation(item);
+    console.log(a);
     setschedules(a);
   }
   return (

@@ -45,14 +45,14 @@ var meetingTime = ["2:00 - 3:00", "3:00 - 4:00", "4:00 - 5:00", "5:00 - 6:00", "
 var teachers = ["teacher 1", "teacher 2", "teacher 3", "teacher 4", "teacher 5"];
 var classRooms = ["b1", "b2", "b3", "b4", "b5", "b6"];
 var roomCapacity = [100, 80, 50, 150, 40, 140];
-var csCourses = [];
-//var csCourses = ["Algebra", "Calculus", "Programming", "Database", "Discrete Math", "Data Structure", "Algorithms", "Electronics", "Comp Arc"];
-var creditHour = [];
-var CourseTeachermapping = [teachers[0], teachers[0], teachers[1], teachers[2], teachers[3], teachers[4], teachers[1], teachers[2], teachers[3]];
+var csCourses = ["a", "b", "c"];
+// var csCourses = ["Algebra", "Calculus", "Programming", "Database", "Discrete Math", "Data Structure", "Algorithms", "Electronics", "Comp Arc"];
+var creditHour = [4, 3, 2];
+var CourseTeachermapping = [teachers[0], teachers[0], teachers[1]];
 var numberOfStudent = 100;
 
 
-dep[0] = new Department(meetingTime, days, teachers, classRooms, roomCapacity, csCourses, creditHour, CourseTeachermapping, numberOfStudent);
+// dep[0] = new Department(meetingTime, days, teachers, classRooms, roomCapacity, csCourses, creditHour, CourseTeachermapping, numberOfStudent);
 // dep[1] = new Department(meetingTime1, days1, teachers1, classRooms1, roomCapacity1, csCourses1, creditHour1, CourseTeachermapping1, numberOfStudent1);
 // dep[2] = new Department(meetingTime2, days2, teachers2, classRooms2, roomCapacity2, csCourses2, creditHour2, CourseTeachermapping2, numberOfStudent2);
 
@@ -64,10 +64,10 @@ export const inputFields = (item) => {
     console.log(item);
     var CourseName = inputsCourseName(item);
     var CourseHour = inputsCourseCreditHour(item);
-    console.log(CourseName);
-    console.log(CourseHour);
-    dep[0] = new Department(meetingTime, days, teachers, classRooms, roomCapacity, csCourses, creditHour, CourseTeachermapping, numberOfStudent);
-    console.log(dep[0].schedule)
+    dep[0] = new Department(meetingTime, days, teachers, classRooms, roomCapacity, CourseName, CourseHour, CourseTeachermapping, numberOfStudent);
+    console.log(dep[0])
+    schedule(dep, 0);
+    console.log(dep[0])
     return schedule(dep, 0);
 }
 export const inputsCourseCreditHour = (inputs) => {
@@ -76,12 +76,12 @@ export const inputsCourseCreditHour = (inputs) => {
     for (let i = 0; i < inputs.course.length; i++) {
         var single = inputs.course[i].creditHour;
         if (single != "") {
-            result.push(single)
-            creditHour.push(inputs.course[i].creditHour)
+            result.push(Number(inputs.course[i].creditHour))
+            // creditHour.push(Number(inputs.course[i].creditHour))
         }
 
     }
-    // console.log(result)
+    console.log(result)
     return result;
 }
 
@@ -93,7 +93,7 @@ export const inputsCourseName = (inputs) => {
         // console.log(single + "ghf")
         if (single != "") {
             console.log(inputs.course[i].courseName);
-            csCourses.push(inputs.course[i].courseName);
+            // csCourses.push(inputs.course[i].courseName);
             result.push(single)
         }
     }
