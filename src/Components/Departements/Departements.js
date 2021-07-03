@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { CssBaseline, Button, Typography, Container, Table, TableHead, TableBody, TableRow, TableCell, Paper, TableContainer } from '@material-ui/core';
 import useStyles from './styles';
 import Departement from './Departement/Departement';
 const Departements = ({ handleMessage }) => {
     const classes = useStyles();
+    const [departments, setDepartments] = useState([1]);
+    const handleSingleMessage = () => {
+
+    }
+    const handleDepartement = () => {
+        // console.log(departments.length)
+        var value = Number(departments) + 1;
+        setDepartments([...departments, Number(value)])
+    }
+
     return (
         <React.Fragment>
             <CssBaseline />
             <Container maxWidth="lg">
                 <Typography component="div" />
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" onClick={handleDepartement}>
                     Add
                 </Button>
                 <Button variant="contained" color="" link='/result'>
@@ -30,13 +40,16 @@ const Departements = ({ handleMessage }) => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
+                            {departments.map((index) => (
+                                <TableRow>
+                                    <TableCell colSpan={5}>
+                                        <Departement handleMessage={handleMessage} index={index} />
+                                    </TableCell>
+                                </TableRow>
 
-                            <TableRow>
-                                <TableCell colSpan={5}>
-                                    <Departement handleMessage={handleMessage} />
-                                    {/* <Departement handleMessage={handleMessage} /> */}
-                                </TableCell>
-                            </TableRow>
+                            ))}
+
+
                             {/* <TableRow>
                                 <TableCell colSpan={5}>
                                     <Departement />

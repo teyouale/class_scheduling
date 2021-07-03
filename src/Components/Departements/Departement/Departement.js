@@ -8,7 +8,7 @@ import useStyles from './styles';
 import { ContactSupportOutlined } from '@material-ui/icons';
 
 
-const Departement = ({ handleMessage }) => {
+const Departement = ({ handleMessage, index }) => {
     const classes = useStyles();
 
 
@@ -77,7 +77,7 @@ const Departement = ({ handleMessage }) => {
         course: courseFields
     }
     const handleSave = () => {
-        handleMessage(initalValue)
+        handleMessage(initalValue, index - 1);
     }
 
 

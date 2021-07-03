@@ -60,15 +60,15 @@ var numberOfStudent = 100;
 // schedule(dep, 1);
 // schedule(dep, 2);
 
-export const inputFields = (item) => {
+export const inputFields = (item, index) => {
     console.log(item);
     var CourseName = inputsCourseName(item);
     var CourseHour = inputsCourseCreditHour(item);
-    dep[0] = new Department(meetingTime, days, teachers, classRooms, roomCapacity, CourseName, CourseHour, CourseTeachermapping, numberOfStudent);
-    console.log(dep[0])
-    schedule(dep, 0);
-    console.log(dep[0])
-    return schedule(dep, 0);
+    dep[index] = new Department(meetingTime, days, teachers, classRooms, roomCapacity, CourseName, CourseHour, CourseTeachermapping, numberOfStudent);
+    console.log(dep[index])
+    schedule(dep, index);
+    console.log(dep[index])
+    // return schedule(dep, 0);
 }
 export const inputsCourseCreditHour = (inputs) => {
     var result = [];
@@ -99,9 +99,9 @@ export const inputsCourseName = (inputs) => {
     }
     return result;
 }
-export const initalzation = () => {
-    console.log(dep[0].schedule)
-    return dep[0].schedule
+export const initalzation = (index) => {
+    console.log(dep[index].schedule)
+    return dep[index].schedule
 }
 
 function schedule(dep, num) {

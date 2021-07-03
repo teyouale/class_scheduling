@@ -7,21 +7,26 @@ import Result from './Components/Result/Result';
 
 const App = () => {
   const [schedules, setschedules] = useState([])
-  const handleMessage = (item) => {
-    var a = inputFields(item);
-    // var a = initalzation(item);
-    console.log(a);
-    setschedules(a);
+  const handleMessage = (item, index) => {
+    console.log(index)
+    inputFields(item, index);
+    var a = initalzation(index);
+    setschedules([...schedules, a]);
+    console.log(schedules);
   }
+
   return (
     <div className="App">
+
       <Router>
         <Switch>
           <Route path="/" exact>
             <Departements handleMessage={handleMessage} />
           </Route>
           <Route path="/result" exact>
-            <Result schedules={schedules} />
+            {schedules.map((schedule) => (
+              <Result schedules={schedule} />
+            ))}
           </Route>
         </Switch>
       </Router>
