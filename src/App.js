@@ -4,6 +4,7 @@ import Departements from "./Components/Departements/Departements";
 import { inputFields, initalzation } from "./algorthm"
 import Button from './Components/Controls/Button';
 import Result from './Components/Result/Result';
+import Example from './Components/ToPDF'
 
 const App = () => {
   const [schedules, setschedules] = useState([])
@@ -27,6 +28,9 @@ const App = () => {
             {schedules.map((schedule) => (
               <Result schedules={schedule} />
             ))}
+          </Route>
+          <Route path="/to" exact>
+            <Example />
           </Route>
         </Switch>
       </Router>

@@ -40,7 +40,9 @@ class Department {
 
 var dep = [];
 
-var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+// var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+
+var days = [true, false, true, true, true, false, false];
 var meetingTime = ["2:00 - 3:00", "3:00 - 4:00", "4:00 - 5:00", "5:00 - 6:00", "7:00-8:00", "8:00-9:00", "9:00-10:00"];
 var teachers = ["teacher 1", "teacher 2", "teacher 3", "teacher 4", "teacher 5"];
 var classRooms = ["b1", "b2", "b3", "b4", "b5", "b6"];
@@ -64,11 +66,29 @@ export const inputFields = (item, index) => {
     console.log(item);
     var CourseName = inputsCourseName(item);
     var CourseHour = inputsCourseCreditHour(item);
-    dep[index] = new Department(meetingTime, days, teachers, classRooms, roomCapacity, CourseName, CourseHour, CourseTeachermapping, numberOfStudent);
-    console.log(dep[index])
+    var CourseTeachers = inputsCourseTeachers(item);
+    console.log(CourseTeachers)
+    dep[index] = new Department(meetingTime, days, CourseTeachers, classRooms, roomCapacity, CourseName, CourseHour, CourseTeachers, numberOfStudent);
+    //    Room Assign
+    scheduleRoom(dep, 0);
+    console.log(dep[index].assignedRooms)
     schedule(dep, index);
     console.log(dep[index])
     // return schedule(dep, 0);
+}
+export const inputsCourseTeachers = (inputs) => {
+    var result = [];
+
+    for (let i = 0; i < inputs.course.length; i++) {
+        var single = inputs.course[i].courseInstactor;
+        if (single != "") {
+            result.push(inputs.course[i].courseInstactor)
+            // courseInstactor.push(Number(inputs.course[i].courseInstactor))
+        }
+
+    }
+    // console.log(result)
+    return result;
 }
 export const inputsCourseCreditHour = (inputs) => {
     var result = [];
@@ -113,7 +133,7 @@ function schedule(dep, num) {
     var x = 0;
     for (var i = 0; i < dep[num].schedule.length; i++) {
         for (var j = 0; j < dep[num].schedule[i].length; j++) {
-            if (dep[num].schedule[i][j] == "") {
+            if (dep[num].schedule[i][j] == "" && dep[num].days[j]) {
                 var count = 0;
                 while (true) {
                     x = Math.floor(Math.random() * dep[num].courses.length);
@@ -145,12 +165,18 @@ function schedule(dep, num) {
 
 }
 
-function assignRoom(dep, num) {
+
+
+function scheduleRoom(dep, num) {
+
+    // if(!isPossible(dep[num])){
+    //     return;
+    // }
 
     var x = 0;
     for (var i = 0; i < dep[num].assignedRooms.length; i++) {
         for (var j = 0; j < dep[num].assignedRooms[i].length; j++) {
-            if (dep[num].assignedRooms[i][j] == "") {
+            if (dep[num].assignedRooms[i][j] == "" && dep[num].days[j]) {
                 while (true) {
                     x = Math.floor(Math.random() * dep[num].classRooms.length);
                     var conflict = false;
@@ -161,7 +187,7 @@ function assignRoom(dep, num) {
                                 break;
                             }
                     }
-                    if (!conflict && dep[num].classRooms[x] >= dep[num].numberOfStudent) {
+                    if (!conflict && dep[num].roomCapacity[x] >= dep[num].numberOfStudent) {
                         dep[num].assignedRooms[i][j] = dep[num].classRooms[x];
                         break;
                     }
@@ -171,6 +197,8 @@ function assignRoom(dep, num) {
     }
 
 }
+
+
 
 function getIndex(course, courses) {
     for (var i = 0; i < courses.length; i++) {

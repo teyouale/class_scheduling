@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -8,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { StyledTableCell, StyledTableRow } from './styles';
+import ReactToPrint from "react-to-print";
 
 const useStyles = makeStyles({
     table: {
@@ -17,7 +18,8 @@ const useStyles = makeStyles({
 
 const Result = ({ schedules }) => {
     const classes = useStyles();
-    const [newResult, setNewResult] = useState([])
+    const [newResult, setNewResult] = useState([]);
+    const tableRef = useRef()
 
     useEffect(() => {
         displayTable()
@@ -39,30 +41,36 @@ const Result = ({ schedules }) => {
         console.log(result)
     }
     return (
-        <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="customized table">
-                <TableHead>
-                    <TableRow>
-                        <StyledTableCell>Monday</StyledTableCell>
-                        <StyledTableCell>Tuesday</StyledTableCell>
-                        <StyledTableCell>Wednesday</StyledTableCell>
-                        <StyledTableCell>Thrusday</StyledTableCell>
-                        <StyledTableCell>Friday</StyledTableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {newResult.map((row, index) => (
-                        <StyledTableRow key={index} >
-                            <StyledTableCell component="th" scope="row">
-                                {row[0]}
-                            </StyledTableCell>
-                            <StyledTableCell >{row[1]}</StyledTableCell>
-                            <StyledTableCell >{row.[2]}</StyledTableCell>
-                            <StyledTableCell >{row.[3]}</StyledTableCell>
-                            <StyledTableCell >{row.[4]}</StyledTableCell>
-                        </StyledTableRow>
-                    ))}
-                    {/*     <StyledTableRow  >
+        <div>
+            <ReactToPrint
+                trigger={() => <button>Print this out!</button>}
+                content={() => tableRef.current}
+            />
+
+            <TableContainer component={Paper} ref={tableRef}>
+                <Table className={classes.table} aria-label="customized table">
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell>Monday</StyledTableCell>
+                            <StyledTableCell>Tuesday</StyledTableCell>
+                            <StyledTableCell>Wednesday</StyledTableCell>
+                            <StyledTableCell>Thrusday</StyledTableCell>
+                            <StyledTableCell>Friday</StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {newResult.map((row, index) => (
+                            <StyledTableRow key={index} >
+                                <StyledTableCell component="th" scope="row">
+                                    {row[0]}
+                                </StyledTableCell>
+                                <StyledTableCell >{row[1]}</StyledTableCell>
+                                <StyledTableCell >{row.[2]}</StyledTableCell>
+                                <StyledTableCell >{row.[3]}</StyledTableCell>
+                                <StyledTableCell >{row.[4]}</StyledTableCell>
+                            </StyledTableRow>
+                        ))}
+                        {/*     <StyledTableRow  >
                         
                         <StyledTableCell component="th" scope="row">  {newResult[0][0]} </StyledTableCell>
                         <StyledTableCell component="th" scope="row">  {newResult[0][1]} </StyledTableCell>
@@ -101,9 +109,10 @@ const Result = ({ schedules }) => {
                     </StyledTableRow> */}
 
 
-                </TableBody>
-            </Table>
-        </TableContainer >
+                    </TableBody>
+                </Table>
+            </TableContainer >
+        </div>
     );
 }
 
