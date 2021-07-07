@@ -88,6 +88,7 @@ const Departement = ({ handleMessage, index }) => {
 
     const handleSave = () => {
         handleMessage(initalValue, index - 1);
+        console.log(state);
     }
     const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
@@ -97,7 +98,8 @@ const Departement = ({ handleMessage, index }) => {
         departementName: departementName,
         course: courseFields,
         classRoom: classRoomFields,
-        noOfStudent: noOfStudent
+        noOfStudent: noOfStudent,
+        days: state
     }
 
     return (
@@ -144,7 +146,7 @@ const Departement = ({ handleMessage, index }) => {
                                     {/* Class Room */}
                                 </Grid>
                                 <Grid item xs={12} >
-                                    <TextField id="filled-full-width" onChange={handleSingleItemChange} value={noOfStudent} label="No of Students" name='totalStudent' style={{ margin: 8, marginLeft: 16 }} placeholder="Enter No of Student" fullWidth InputLabelProps={{ shrink: true, }} variant="filled" />
+                                    <TextField id="filled-full-width" onChange={handleSingleItemChange} value={noOfStudent} label="No of Students" name='totalStudent' style={{ margin: 8 }} placeholder="Enter No of Student" fullWidth InputLabelProps={{ shrink: true, }} variant="filled" />
                                     {classRoomFields.map((classRoomField, index) => (
                                         <FormGroup className={classes.tableCenter} key={index} >
                                             <TextField id="filled-full-width" name='roomName' value={classRoomField.roomName} onChange={event => handleInputChange(index, event)} label="Room" style={{ margin: 8 }} placeholder="Enter Room" InputLabelProps={{ shrink: true, }} variant="filled" />
@@ -190,19 +192,6 @@ const Departement = ({ handleMessage, index }) => {
                                     </FormControl>
 
                                 </Grid>
-                                <div>
-                                    <Button
-                                        // type="submit"
-                                        text="Save"
-                                        // disable='true'
-                                        onClick={handleSave} />
-                                    <Button
-                                        text="Reset"
-                                        color="default"
-                                        onClick={resetForm}
-                                    />
-                                    {/* <button type={'reset'} onClick={() => props.sendDataToParent('test string')}>Click Here</button> */}
-                                </div>
                             </Grid>
                         </form>
                     </Typography>

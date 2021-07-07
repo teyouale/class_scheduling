@@ -20,11 +20,9 @@ const Departements = ({ handleMessage }) => {
             <CssBaseline />
             <Container maxWidth="lg">
                 <Typography component="div" />
-                <Button variant="contained" color="primary" onClick={handleDepartement}>
-                    Add
-                </Button>
-                <Button variant="contained" color="" link='/result'>
-                    <Link to='/result'>
+                <Button variant="outlined" onClick={handleDepartement} style={{ margin: '8px' }}>Add</Button>
+                <Button variant="outlined" color="primary" link='/result'>
+                    <Link to='/result' style={{ textDecoration: 'none' }}>
                         Generate
                     </Link>
                 </Button>

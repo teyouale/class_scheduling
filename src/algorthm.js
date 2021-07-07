@@ -63,13 +63,14 @@ var numberOfStudent = 100;
 // schedule(dep, 2);
 
 export const inputFields = (item, index) => {
-    console.log(item);
+    console.log(item.days);
     var CourseName = inputsCourseName(item);
     var CourseHour = inputsCourseCreditHour(item);
     var CourseTeachers = inputsCourseTeachers(item);
     var ClassRooms = inputsClassRoomName(item);
     var ClassRoomsCapacity = inputsClassRoomCapacity(item);
     var noOfStudent = Number(item.noOfStudent);
+    var days = inputsdays(item.days)
     // console.log(CourseTeachers)
     dep[index] = new Department(meetingTime, days, CourseTeachers, ClassRooms, ClassRoomsCapacity, CourseName, CourseHour, CourseTeachers, noOfStudent);
     //    Room Assign
@@ -79,6 +80,16 @@ export const inputFields = (item, index) => {
     schedule(dep, index);
     console.log(dep[index])
     // return schedule(dep, 0);
+}
+export const inputsdays = (input) => {
+    var result = [];
+    result.push(input.monday);
+    result.push(input.tuesday);
+    result.push(input.wensday);
+    result.push(input.thrusday);
+    result.push(input.friday);
+    console.log(result)
+    return result;
 }
 export const inputsClassRoomName = (inputs) => {
     var result = [];

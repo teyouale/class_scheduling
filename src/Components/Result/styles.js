@@ -8,11 +8,10 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 
-
 export const StyledTableCell = withStyles((theme) => ({
     head: {
-        // backgroundColor: theme.palette.common.black,
-        // color: theme.palette.common.white,
+        backgroundColor: '#f9fafe',
+        color: theme.palette.common.black,
     },
     body: {
         fontSize: 14,

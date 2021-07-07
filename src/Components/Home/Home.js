@@ -10,11 +10,11 @@ export default function Home() {
     useEffect(() => {
         const options = {
             strings: [
-                'Course Scheduling Algorithm returns a schedule where the preferences for pro- fessors and courses are maximized, and the difference between the number of credits that may be assigned to a professor and the number of credits actually assigned to a professor is kept to a minimum.',
+                'Course Scheduling Algorithm returns a schedule where the preferences for pro-fessors and courses are maximized, and the difference between the number of credits that may be assigned to a professor and the number of credits actually assigned to a professor is kept to a minimum.',
                 'Class scheduling refers to the process of preparing a class schedule. Class schedule shows subject, time allotment, days, room utilization, instructor, and class adviser. Both instructor and student use it for reference as classes begin.'
             ],
-            typeSpeed: 50,
-            backSpeed: 50,
+            typeSpeed: 30,
+            backSpeed: 40,
             loop: true
         };
 

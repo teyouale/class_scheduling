@@ -1,20 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import { Table, Button, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
 import { StyledTableCell, StyledTableRow } from './styles';
+import SaveIcon from '@material-ui/icons/Save';
 import ReactToPrint from "react-to-print";
+import styled from 'styled-components';
 
 const useStyles = makeStyles({
     table: {
         minWidth: 700,
     },
 });
+
+
 
 const Result = ({ schedules }) => {
     const classes = useStyles();
@@ -23,7 +21,17 @@ const Result = ({ schedules }) => {
     const tableRef = useRef();
 
     const meetingTime = ["2:00 - 3:00", "3:00 - 4:00", "4:00 - 5:00", "5:00 - 6:00", "7:00-8:00", "8:00-9:00", "9:00-10:00"];
-
+    const HeadingTitle = styled.h1`
+        font-family: sans-serif;
+         font-weight: 700;
+        font-size: 54px;
+        line-height: 70px;
+        margin: 0px;
+        padding:3px;
+        margin: 0 auto;
+        text-align:center;
+        text-transform: uppercase;
+    `
     useEffect(() => {
         displayTable()
         console.log(scheduleResult)
@@ -49,12 +57,14 @@ const Result = ({ schedules }) => {
     }
     return (
         <div>
+
             <ReactToPrint
-                trigger={() => <button>Print this out!</button>}
+                trigger={() => <Button variant="contained" color="#f9fafe" size="large" className={classes.button} startIcon={<SaveIcon />}> Export </Button>}
                 content={() => tableRef.current}
             />
-            <h1>{schedules.departementName}</h1>
+
             <TableContainer component={Paper} ref={tableRef}>
+                <HeadingTitle>{schedules.departementName}</HeadingTitle>
                 <Table className={classes.table} aria-label="customized table">
                     <TableHead>
                         <TableRow>
