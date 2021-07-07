@@ -5,25 +5,32 @@ import { inputFields, initalzation } from "./algorthm"
 import Button from './Components/Controls/Button';
 import Result from './Components/Result/Result';
 import Example from './Components/ToPDF'
+import Home from './Components/Home/Home';
+import Corner from './Components/Controls/Corner'
 
 const App = () => {
   const [schedules, setschedules] = useState([])
   const handleMessage = (item, index) => {
     console.log(index)
     inputFields(item, index);
-    var a = initalzation(index);
+    var a = initalzation(item, index);
     setschedules([...schedules, a]);
-    console.log(schedules);
+    // console.log(schedules);
   }
 
   return (
-    <div className="App">
-
+    <div className="App" >
+      <Corner />
       <Router>
         <Switch>
           <Route path="/" exact>
+            <Home />
+            {/* <Departements handleMessage={handleMessage} /> */}
+          </Route>
+          <Route path="/classscheduling" exact>
             <Departements handleMessage={handleMessage} />
           </Route>
+
           <Route path="/result" exact>
             {schedules.map((schedule) => (
               <Result schedules={schedule} />

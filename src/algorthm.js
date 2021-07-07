@@ -67,14 +67,47 @@ export const inputFields = (item, index) => {
     var CourseName = inputsCourseName(item);
     var CourseHour = inputsCourseCreditHour(item);
     var CourseTeachers = inputsCourseTeachers(item);
-    console.log(CourseTeachers)
-    dep[index] = new Department(meetingTime, days, CourseTeachers, classRooms, roomCapacity, CourseName, CourseHour, CourseTeachers, numberOfStudent);
+    var ClassRooms = inputsClassRoomName(item);
+    var ClassRoomsCapacity = inputsClassRoomCapacity(item);
+    var noOfStudent = Number(item.noOfStudent);
+    // console.log(CourseTeachers)
+    dep[index] = new Department(meetingTime, days, CourseTeachers, ClassRooms, ClassRoomsCapacity, CourseName, CourseHour, CourseTeachers, noOfStudent);
     //    Room Assign
-    scheduleRoom(dep, 0);
+    // Add CheckBox For Days
+    scheduleRoom(dep, index);
     console.log(dep[index].assignedRooms)
     schedule(dep, index);
     console.log(dep[index])
     // return schedule(dep, 0);
+}
+export const inputsClassRoomName = (inputs) => {
+    var result = [];
+
+    for (let i = 0; i < inputs.classRoom.length; i++) {
+        var single = inputs.classRoom[i].roomName;
+        if (single != "") {
+            result.push(inputs.classRoom[i].roomName)
+            // roomName.push(Number(inputs.course[i].roomName))
+        }
+
+    }
+    console.log(result)
+    return result;
+}
+export const inputsClassRoomCapacity = (inputs) => {
+    var result = [];
+
+    for (let i = 0; i < inputs.classRoom.length; i++) {
+        var single = inputs.classRoom[i].roomCapacity;
+        if (single != "") {
+            result.push(Number(inputs.classRoom[i].roomCapacity))
+            // roomCapacity.push(Number(inputs.course[i].roomCapacity))
+        }
+
+    }
+    console.log(result)
+    return result;
+
 }
 export const inputsCourseTeachers = (inputs) => {
     var result = [];
@@ -119,9 +152,16 @@ export const inputsCourseName = (inputs) => {
     }
     return result;
 }
-export const initalzation = (index) => {
-    console.log(dep[index].schedule)
-    return dep[index].schedule
+export const initalzation = (item, index) => {
+    // console.log(dep[index].schedule)
+    console.log(item.departementName);
+    console.log(dep[index]);
+
+    const initalValue = {
+        departementName: item.departementName,
+        departementInfo: dep[index]
+    }
+    return initalValue
 }
 
 function schedule(dep, num) {
