@@ -18,7 +18,17 @@ const Departement = ({ handleMessage, index }) => {
         thrusday: false,
         friday: false,
     });
+    const [time, settime] = useState({
+        m1: true,
+        m2: false,
+        m3: false,
+        m4: false,
+        m5: false,
+        m6: false,
+        m7: false
+    })
     const { monday, tuesday, wensday, thrusday, friday } = state;
+    const { m1, m2, m3, m4, m5, m6, m7 } = time;
 
     const [departementName, setDepartementName] = useState('')
     // Values of Inputs
@@ -93,13 +103,17 @@ const Departement = ({ handleMessage, index }) => {
     const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
     };
+    const handletimeChange = (event) => {
+        settime({ ...time, [event.target.name]: event.target.checked });
+    };
 
     const initalValue = {
         departementName: departementName,
         course: courseFields,
         classRoom: classRoomFields,
         noOfStudent: noOfStudent,
-        days: state
+        days: state,
+        time: time
     }
 
     return (
@@ -163,34 +177,73 @@ const Departement = ({ handleMessage, index }) => {
                                             }
                                         </FormGroup>
                                     ))}
-                                    <FormControl component="fieldset" className={classes.formControl}>
-                                        <FormLabel component="legend">Assign No of Days</FormLabel>
-                                        <FormGroup>
-                                            <FormControlLabel
-                                                control={<Checkbox checked={monday} onChange={handleChange} name="monday" />}
-                                                label="Monday"
-                                            />
-                                            <FormControlLabel
-                                                control={<Checkbox checked={tuesday} onChange={handleChange} name="tuesday" />}
-                                                label="Tuesday"
-                                            />
-                                            <FormControlLabel
-                                                control={<Checkbox checked={wensday} onChange={handleChange} name="wensday" />}
-                                                label="Wensday"
-                                            />
-                                            <FormControlLabel
-                                                control={<Checkbox checked={thrusday} onChange={handleChange} name="thrusday" />}
-                                                label="Thrusday"
-                                            />
-                                            <FormControlLabel
-                                                control={<Checkbox checked={friday} onChange={handleChange} name="friday" />}
-                                                label="Friday"
-                                            />
+                                    <Grid container>
+                                        <Grid item xs={6}>
+                                            <FormControl component="fieldset" className={classes.formControl}>
+                                                <FormLabel component="legend">Assign No of Days</FormLabel>
+                                                <FormGroup>
+                                                    <FormControlLabel
+                                                        control={<Checkbox checked={monday} onChange={handleChange} name="monday" />}
+                                                        label="Monday"
+                                                    />
+                                                    <FormControlLabel
+                                                        control={<Checkbox checked={tuesday} onChange={handleChange} name="tuesday" />}
+                                                        label="Tuesday"
+                                                    />
+                                                    <FormControlLabel
+                                                        control={<Checkbox checked={wensday} onChange={handleChange} name="wensday" />}
+                                                        label="Wensday"
+                                                    />
+                                                    <FormControlLabel
+                                                        control={<Checkbox checked={thrusday} onChange={handleChange} name="thrusday" />}
+                                                        label="Thrusday"
+                                                    />
+                                                    <FormControlLabel
+                                                        control={<Checkbox checked={friday} onChange={handleChange} name="friday" />}
+                                                        label="Friday"
+                                                    />
 
-                                        </FormGroup>
-                                        {/* <FormHelperText>Be careful</FormHelperText> */}
-                                    </FormControl>
+                                                </FormGroup>
+                                                {/* <FormHelperText>Be careful</FormHelperText> */}
+                                            </FormControl>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <FormControl component="fieldset" className={classes.formControl}>
+                                                <FormLabel component="legend">Assign Time</FormLabel>
+                                                <FormGroup>
+                                                    <FormControlLabel
+                                                        control={<Checkbox checked={m1} onChange={handletimeChange} name="m1" />}
+                                                        label="2:00 - 3:00"
+                                                    />
+                                                    <FormControlLabel
+                                                        control={<Checkbox checked={m2} onChange={handletimeChange} name="m2" />}
+                                                        label="3:00 - 4:00"
+                                                    />
+                                                    <FormControlLabel
+                                                        control={<Checkbox checked={m3} onChange={handletimeChange} name="m3" />}
+                                                        label="4:00 - 5:00"
+                                                    />
+                                                    <FormControlLabel
+                                                        control={<Checkbox checked={m4} onChange={handletimeChange} name="m4" />}
+                                                        label="5:00 - 6:00"
+                                                    />
+                                                    <FormControlLabel
+                                                        control={<Checkbox checked={m5} onChange={handletimeChange} name="m5" />}
+                                                        label="7:00-8:00"
+                                                    />
+                                                    <FormControlLabel
+                                                        control={<Checkbox checked={m6} onChange={handletimeChange} name="m6" />}
+                                                        label="8:00-9:00"
+                                                    />
+                                                    <FormControlLabel
+                                                        control={<Checkbox checked={m7} onChange={handletimeChange} name="m7" />}
+                                                        label="9:00-10:00"
+                                                    />
 
+                                                </FormGroup>
+                                            </FormControl>
+                                        </Grid>
+                                    </Grid>
                                 </Grid>
                             </Grid>
                         </form>

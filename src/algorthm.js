@@ -63,7 +63,8 @@ var numberOfStudent = 100;
 // schedule(dep, 2);
 
 export const inputFields = (item, index) => {
-    console.log(item.days);
+    console.log(item.time);
+    console.log(item);
     var CourseName = inputsCourseName(item);
     var CourseHour = inputsCourseCreditHour(item);
     var CourseTeachers = inputsCourseTeachers(item);
@@ -71,8 +72,9 @@ export const inputFields = (item, index) => {
     var ClassRoomsCapacity = inputsClassRoomCapacity(item);
     var noOfStudent = Number(item.noOfStudent);
     var days = inputsdays(item.days)
+    var meetingTimes = inputsMeetingTime(item.time)
     // console.log(CourseTeachers)
-    dep[index] = new Department(meetingTime, days, CourseTeachers, ClassRooms, ClassRoomsCapacity, CourseName, CourseHour, CourseTeachers, noOfStudent);
+    dep[index] = new Department(meetingTimes, days, CourseTeachers, ClassRooms, ClassRoomsCapacity, CourseName, CourseHour, CourseTeachers, noOfStudent);
     //    Room Assign
     // Add CheckBox For Days
     scheduleRoom(dep, index);
@@ -80,6 +82,34 @@ export const inputFields = (item, index) => {
     schedule(dep, index);
     console.log(dep[index])
     // return schedule(dep, 0);
+}
+export const inputsMeetingTime = (input) => {
+    var result = [];
+    var meetingTime = ["2:00 - 3:00", "3:00 - 4:00", "4:00 - 5:00", "5:00 - 6:00", "7:00-8:00", "8:00-9:00", "9:00-10:00"];
+    console.log(input);
+    if (input.m1 == true) {
+        result.push(meetingTime[0]);
+    }
+    if (input.m2 == true) {
+        result.push(meetingTime[1]);
+    }
+    if (input.m3 == true) {
+        result.push(meetingTime[2]);
+    }
+    if (input.m4 == true) {
+        result.push(meetingTime[3]);
+    }
+    if (input.m5 == true) {
+        result.push(meetingTime[4]);
+    }
+    if (input.m6 == true) {
+        result.push(meetingTime[5]);
+    }
+    if (input.m7 == true) {
+        result.push(meetingTime[6]);
+    }
+    console.log(result)
+    return result;
 }
 export const inputsdays = (input) => {
     var result = [];

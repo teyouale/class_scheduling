@@ -18,6 +18,7 @@ const Result = ({ schedules }) => {
     const classes = useStyles();
     const [scheduleResult, setscheduleResult] = useState([]);
     const [assignedRoomResult, setassignedRoomResult] = useState([]);
+    const [meetingTimes, setMeetingTimes] = useState([]);
     const tableRef = useRef();
 
     const meetingTime = ["2:00 - 3:00", "3:00 - 4:00", "4:00 - 5:00", "5:00 - 6:00", "7:00-8:00", "8:00-9:00", "9:00-10:00"];
@@ -34,12 +35,12 @@ const Result = ({ schedules }) => {
     `
     useEffect(() => {
         displayTable()
-        console.log(scheduleResult)
+        console.log(schedules + "sadfs")
 
     }, [])
 
     const displayTable = () => {
-        console.log(schedules.departementInfo);
+        console.log(schedules);
         var result = [];
         if (isNaN(schedules)) {
             // for (var i = 0; i < schedules[0].length; i++) {
@@ -50,9 +51,10 @@ const Result = ({ schedules }) => {
             // }
             setscheduleResult(schedules.departementInfo.schedule);
             setassignedRoomResult(schedules.departementInfo.assignedRooms);
+            setMeetingTimes(schedules.departementInfo.meetingTime)
             // console.log(schedules.departementInfo.assignedRooms)
         }
-        console.log(assignedRoomResult)
+        console.log(scheduleResult)
         // console.log(result)
     }
     return (
@@ -80,7 +82,7 @@ const Result = ({ schedules }) => {
                         {scheduleResult.map((row, index) => (
                             <StyledTableRow key={index} >
                                 <StyledTableCell component="th" scope="row">
-                                    {meetingTime[index]}
+                                    {meetingTimes[index]}
                                 </StyledTableCell>
                                 <StyledTableCell> {(row.[0] != '' ? (row.[0] + ' (' + assignedRoomResult[index][0] + ')') : "")}  </StyledTableCell>
                                 <StyledTableCell> {(row.[1] != '' ? (row.[1] + ' (' + assignedRoomResult[index][0] + ')') : "")}  </StyledTableCell>

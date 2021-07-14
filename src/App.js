@@ -32,9 +32,11 @@ const App = () => {
           </Route>
 
           <Route path="/result" exact>
-            {schedules.map((schedule) => (
-              <Result schedules={schedule} />
-            ))}
+            {
+              (schedules.length == 0) ? <h1>Enter Correct Format</h1> :
+                schedules.map((schedule) => (
+                  <Result schedules={schedule} />
+                ))}
           </Route>
           <Route path="/to" exact>
             <Example />
