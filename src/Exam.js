@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Container from '@material-ui/core/Container';
 import { TextField } from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
 import { IndexedSourceMapConsumer } from 'webpack-sources/node_modules/source-map';
 import Grid from '@material-ui/core/Grid';
-import DateFnsUtils from '@date-io/date-fns'; 
+import DateFnsUtils from '@date-io/date-fns';
 import '@date-io/date-fns';
 import DragDrop from "./DragDrop/index2";
 import {
@@ -16,22 +16,22 @@ import {
   KeyBoardTimePicker,
   KeyBoarddatePicker,
   KeyboardDatePicker
-}from '@material-ui/pickers';
-import { FormControl, FormGroup, Accordion, AccordionSummary, AccordionDetails, Typography, InputLabel, Input, FormHelperText, FormLabel, FormControlLabel, Checkbox, Divider, AccordionActions} from '@material-ui/core';
+} from '@material-ui/pickers';
+import { FormControl, FormGroup, Accordion, AccordionSummary, AccordionDetails, Typography, InputLabel, Input, FormHelperText, FormLabel, FormControlLabel, Checkbox, Divider, AccordionActions } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) =>({
-  root:{
-    '& .MuiTextField-root':{
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
       margin: theme.spacing(1),
     },
   },
-  button:{
+  button: {
     margin: theme.spacing(1),
   }
 }))
 
 
-function App() {
+function Exam() {
   const classes = useStyles()
 
   const [time, settime] = useState({
@@ -39,10 +39,10 @@ function App() {
     m2: false,
     m3: false
   })
-  const { m1, m2, m3} = time;
+  const { m1, m2, m3 } = time;
   const handletimeChange = (event) => {
     settime({ ...time, [event.target.name]: event.target.checked });
-};
+  };
 
   const [selectedDate, setSelectedDate] = React.useState(
     new Date("2020-09-11T12:00:00")
@@ -63,15 +63,15 @@ function App() {
   const [noOfStudent, setnoOfStudent] = useState(0);
 
   const handleSingleItemChange = (e) => {
-        setnoOfStudent(e.target.value);
-}
+    setnoOfStudent(e.target.value);
+  }
 
   const [inputFields, setInputFields] = useState([
-    { courseName: '', invigilatorName: ''},
+    { courseName: '', invigilatorName: '' },
   ]);
 
   const [inputFields2, setInputFields2] = useState([
-    { Room: '', Capacity: ''},
+    { Room: '', Capacity: '' },
   ]);
 
   const handleSubmit = (e) => {
@@ -90,7 +90,7 @@ function App() {
     setnoOfStudent(0);
     setSelectedDate(new Date("2020-09-11T12:00:00"));
     setSelectedDate2(new Date("2020-10-11T12:00:00"));
-    settime([{m1: true, m2: false,m3: false}]);
+    settime([{ m1: true, m2: false, m3: false }]);
   }
 
 
@@ -107,166 +107,166 @@ function App() {
   }
 
   const handleAddFields = () => {
-    setInputFields([...inputFields,{courseName: '', invigilatorName:''}])
+    setInputFields([...inputFields, { courseName: '', invigilatorName: '' }])
   }
 
   const handleAddFields2 = () => {
-    setInputFields2([...inputFields2,{Room: '', Capacity:''}])
+    setInputFields2([...inputFields2, { Room: '', Capacity: '' }])
   }
 
   const handleRemoveFields = (index) => {
     const values = [...inputFields];
-    values.splice(index,1);
+    values.splice(index, 1);
     setInputFields(values);
   }
 
 
   const handleRemoveFields2 = (index) => {
     const values = [...inputFields2];
-    values.splice(index,1);
+    values.splice(index, 1);
     setInputFields2(values);
   }
   return (
-    
+
     <Container>
-      <Typography variant="h3">DragDrop</Typography>
-      <DragDrop />
+      {/* <Typography variant="h3">DragDrop</Typography> */}
+      {/* <DragDrop /> */}
       {/* <h1>Exam Scheduler</h1> */}
       <Typography variant="h3">Exam Scheduler</Typography>
       <form className={classes.root} onSubmit={handleSubmit}>
-        { inputFields.map((inputField, index) => (
-            <div key={index}>
-              <TextField
+        {inputFields.map((inputField, index) => (
+          <div key={index}>
+            <TextField
               name="courseName"
               label="Course"
               variant="filled"
               value={inputField.courseName}
               onChange={event => handleChangeInput(index, event)}
-              />
-              <TextField
+            />
+            <TextField
               name="invigilatorName"
               label="Invigilator"
               variant="filled"
               value={inputField.invigilatorName}
               onChange={event => handleChangeInput(index, event)}
-              />
-              <IconButton
-                onClick = {() => handleRemoveFields(index)}
-              >
-                  <RemoveIcon/>
-              </IconButton>
-              <IconButton
-                  onClick = {() => handleAddFields()}
-              >
-                  <AddIcon/>
-              </IconButton>
-            </div>
-        )) }
+            />
+            <IconButton
+              onClick={() => handleRemoveFields(index)}
+            >
+              <RemoveIcon />
+            </IconButton>
+            <IconButton
+              onClick={() => handleAddFields()}
+            >
+              <AddIcon />
+            </IconButton>
+          </div>
+        ))}
 
-<TextField id="filled-full-width" onChange={handleSingleItemChange} value={noOfStudent} label="No of Students" name='totalStudent' style={{ margin: 8 }} placeholder="Enter No of Student" fullWidth InputLabelProps={{ shrink: true, }} variant="filled" />
+        <TextField id="filled-full-width" onChange={handleSingleItemChange} value={noOfStudent} label="No of Students" name='totalStudent' style={{ margin: 8 }} placeholder="Enter No of Student" fullWidth InputLabelProps={{ shrink: true, }} variant="filled" />
 
-{ inputFields2.map((inputField, index) => (
-            <div key={index}>
-              <TextField
+        {inputFields2.map((inputField, index) => (
+          <div key={index}>
+            <TextField
               name="Room"
               label="Room"
               variant="filled"
               value={inputField.Room}
               onChange={event => handleChangeInput2(index, event)}
-              />
-              <TextField
+            />
+            <TextField
               name="Capacity"
               label="Capacity"
               variant="filled"
               value={inputField.Capacity}
               onChange={event => handleChangeInput2(index, event)}
-              />
-              <IconButton
-                onClick = {() => handleRemoveFields2(index)}
-              >
-                  <RemoveIcon/>
-              </IconButton>
-              <IconButton
-                  onClick = {() => handleAddFields2()}
-              >
-                  <AddIcon/>
-              </IconButton>
-            </div>
-        )) }
+            />
+            <IconButton
+              onClick={() => handleRemoveFields2(index)}
+            >
+              <RemoveIcon />
+            </IconButton>
+            <IconButton
+              onClick={() => handleAddFields2()}
+            >
+              <AddIcon />
+            </IconButton>
+          </div>
+        ))}
 
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container >
-            <KeyboardDatePicker 
+            <KeyboardDatePicker
               disableToolbar
               variant='inline'
               format='MM/dd/yyy'
               id='date-picker'
-              label = 'Exam start day'
-              value = {selectedDate}
+              label='Exam start day'
+              value={selectedDate}
               onChange={handleDateChange}
               KeyboardButtonProps={{
 
-                'arial-label':'change date'
+                'arial-label': 'change date'
               }}
             />
-          </Grid>  
-      </MuiPickersUtilsProvider>
+          </Grid>
+        </MuiPickersUtilsProvider>
 
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container >
-            <KeyboardDatePicker 
+            <KeyboardDatePicker
               disableToolbar
               variant='inline'
               format='MM/dd/yyy'
               id='date-picker2'
-              label = 'Exam end day'
-              value = {selectedDate2}
+              label='Exam end day'
+              value={selectedDate2}
               onChange={handleDateChange2}
               KeyboardButtonProps={{
 
-                'arial-label':'change date'
+                'arial-label': 'change date'
               }}
             />
-          </Grid>  
-      </MuiPickersUtilsProvider>
+          </Grid>
+        </MuiPickersUtilsProvider>
 
-      <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel component="legend">Assign Time</FormLabel>
-        <FormGroup>
-              <FormControlLabel
-                    control={<Checkbox checked={m1} onChange={handletimeChange} name="m1" />}
-                    label="Morning"
-              />
-              <FormControlLabel
-                    control={<Checkbox checked={m2} onChange={handletimeChange} name="m2" />}
-                    label="Afternoon"
-              />
-              <FormControlLabel
-                    control={<Checkbox checked={m3} onChange={handletimeChange} name="m3" />}
-                    label="Mixed"
-              />
-        </FormGroup>
+        <FormControl component="fieldset" className={classes.formControl}>
+          <FormLabel component="legend">Assign Time</FormLabel>
+          <FormGroup>
+            <FormControlLabel
+              control={<Checkbox checked={m1} onChange={handletimeChange} name="m1" />}
+              label="Morning"
+            />
+            <FormControlLabel
+              control={<Checkbox checked={m2} onChange={handletimeChange} name="m2" />}
+              label="Afternoon"
+            />
+            <FormControlLabel
+              control={<Checkbox checked={m3} onChange={handletimeChange} name="m3" />}
+              label="Mixed"
+            />
+          </FormGroup>
         </FormControl>
         <div>
-              <Button 
-              className={classes.button}
-              variant="contained" 
-              color="primary" 
-              type="submit"
-              onClick={handleSubmit}
-              >Generate</Button>
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="primary"
+            type="submit"
+            onClick={handleSubmit}
+          >Generate</Button>
 
-              <Button 
-              className={classes.button}
-              variant="contained" 
-              color="primary" 
-              type="reset"
-              onClick={handleReset}
-              >Reset</Button>
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="primary"
+            type="reset"
+            onClick={handleReset}
+          >Reset</Button>
         </div>
       </form>
     </Container>
   );
 }
 
-export default App;
+export default Exam;

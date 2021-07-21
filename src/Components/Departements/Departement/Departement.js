@@ -134,7 +134,7 @@ const Departement = ({ handleMessage, index }) => {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography className={classes.root} fullWidth>
-                        <form noValidate autoComplete="off" >
+                        <form noValidate autoComplete="on" >
                             <Grid container>
                                 <Grid item xs={12}>
                                     <TextField id="filled-full-width" onChange={handleSingleItemChange} value={departementName} name='Departement' label="Departement" style={{ margin: 8 }} placeholder="Enter Your Departement" fullWidth margin="large" InputLabelProps={{ shrink: true, }} variant="filled" />
