@@ -43,7 +43,53 @@ var dep = [];
 // var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
 var days = [true, false, true, true, true, false, false];
-var meetingTime = ["2:00 - 3:00", "3:00 - 4:00", "4:00 - 5:00", "5:00 - 6:00", "7:00-8:00", "8:00-9:00", "9:00-10:00"];
+
+////////
+
+var duration = 60
+var numberOfClassPerDay = 7
+var startTime = "2:00"
+var time = startTime.split(":")
+var hour = parseInt(time[0]) + (parseInt(time[1]) + duration ) 
+if (hour > 9){
+    hour = String(hour)
+}
+else{
+    hour = "0" + String(hour)
+}
+minutes = (parseInt(time[1]) + duration ) % 60
+if (minutes > 9){
+    minutes = String(minutes)
+}
+else{
+    minutes = "0" + String(minutes)
+}
+var endTime = hour +":"+ minutes
+var meetingTime = [startTime + " - " + endTime]
+for (let i = 0; i < numberOfClassPerDay - 1 ; i++ ){
+    var temp = meetingTime[-1].split(" - ")
+    startTime = temp[1]
+    var time = startTime.split(":")
+    var hour = parseInt(time[0]) + (parseInt(time[1]) + duration ) // 60
+    if (hour > 9){
+        hour = String(hour)
+    }
+    else{
+        hour = "0" + String(hour)
+    }
+    var minutes = (parseInt(time[1]) + duration ) % 60
+    if (minutes > 9){
+        minutes = String(minutes)
+    }
+    else{
+        minutes = "0" + String(minutes)
+    }
+    endTime = hour + ":" + minutes 
+    meetingTime.push(startTime + " - " + endTime)
+}
+
+///////
+//var meetingTime = ["2:00 - 3:00", "3:00 - 4:00", "4:00 - 5:00", "5:00 - 6:00", "7:00-8:00", "8:00-9:00", "9:00-10:00"];
 var teachers = ["teacher 1", "teacher 2", "teacher 3", "teacher 4", "teacher 5"];
 var classRooms = ["b1", "b2", "b3", "b4", "b5", "b6"];
 var roomCapacity = [100, 80, 50, 150, 40, 140];
