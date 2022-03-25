@@ -48,7 +48,7 @@ export const ScheduleGrid = styled.div`
     color: black;
     display: grid;
     justify-content: center;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 50px 50px;
     grid-gap: 50px;    
     border: 10px lightblue;

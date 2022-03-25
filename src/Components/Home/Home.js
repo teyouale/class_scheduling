@@ -46,6 +46,15 @@ export default function Home() {
 
                             </ScheduleItem>
                         </ScheduleItemButton>
+                        <ScheduleItemButton>
+                            <ScheduleItem to='/Exam' >
+
+
+                                <ItemHeading>Exam Scheduling Algorithm</ItemHeading>
+                                <ItemInformation> Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed commodi aut harum est labore. Voluptates fuga amet sit sint quidem ipsum inventore sapiente dicta? Impedit commodi necessitatibus dolor doloribus voluptatem! </ItemInformation>
+
+                            </ScheduleItem>
+                        </ScheduleItemButton>
 
                         {/* <ScheduleItem>
                             <ItemHeading>Class Scheduling Algorithm</ItemHeading>
